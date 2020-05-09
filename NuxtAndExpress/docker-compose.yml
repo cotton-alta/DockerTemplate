@@ -1,35 +1,35 @@
 version: '3.3'
 services:
   client:
-      build:
-        context: ./client
-        dockerfile: Dockerfile
-      image: nuxt-dev:1.0
-      container_name: sample.client
-      working_dir: /client
-      tty: true
-      environment:
-        HOST: '0.0.0.0'
-        NODE_ENV: development
-      command: bash -c "yarn install && yarn dev -L"
-      volumes:
-        - ./client:/client
-        - /client/node_modules
-      ports:
-        - 3000:3000
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: nuxt-dev:1.0
+    container_name: sample.client
+    working_dir: /client
+    tty: true
+    environment:
+      HOST: '0.0.0.0'
+      NODE_ENV: development
+    command: bash -c "yarn install && yarn dev -L"
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    ports:
+      - 3000:3000
   server:
-      build:
-        context: ./server
-        dockerfile: Dockerfile
-      container_name: sample.server
-      working_dir: /server
-      tty: true
-      environment:
-        HOST: '0.0.0.0'
-        NODE_ENV: development
-      command: bash -c "yarn install && yarn run ts-node index.ts"
-      volumes:
-        - ./server:/server
-        - /server/node_modules
-      ports:
-        - 4000:4000
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: sample.server
+    working_dir: /server
+    tty: true
+    environment:
+      HOST: '0.0.0.0'
+      NODE_ENV: development
+    command: bash -c "yarn install && yarn run ts-node index.ts"
+    volumes:
+      - ./server:/server
+      - /server/node_modules
+    ports:
+      - 4000:4000
